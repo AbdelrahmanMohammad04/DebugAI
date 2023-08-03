@@ -1,0 +1,12 @@
+{
+  "name": "cli-project",
+  "version": "1.0.0",
+  "description": "You will put everything you learned together and build a command line application that utilizes different NPM packages. These could be packages that were used this past week or ones that you researched and found on your own.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Abdelrahman",
+  "license": "ISC"
+}
