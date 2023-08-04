@@ -8,15 +8,13 @@ const openai = new OpenAIApi(configuration)
 const readline = createInterface({ input, output })
 
 const userInput = await readline.question(
-  "Hello, I am Abe, your AI debugger. How may I assist you? "
+  "Hello, I am Abe, your AI debugger. What language are you using? "
 )
 const messages = [{ role: "assistant", content: userInput }]
-let languageInput = await readline.question(`Great! What language are you using? `)
 
 async function testing(message) {  
   while (userInput !== ".exit") {
-      messages.push({ role: "user", content: `${userInput} ${message} in ${languageInput}` })
-      console.log(messages[messages.length-1].content)
+      messages.push({ role: "user", content: `help me debug ${message} in ${userInput}` })
       try {
         const response = await openai.createChatCompletion({
           messages,
@@ -63,7 +61,6 @@ try {
       name: 'manual',
       message: 'Describe your error.'
     })
-    console.log(response['manual'])
     testing(response['manual'])
   }
 }
