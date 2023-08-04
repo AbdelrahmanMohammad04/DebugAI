@@ -50,7 +50,7 @@ try {
   }
 }
 
-messages.push({ role: "user", content: `help me debug ${request} in ${userInput}` })
+messages.push({ role: "user", content: `help me debug ${request} in ${userInput}. Here is my code: \n ${text}` })
 
 while (userInput !== ".exit") {
   try {
@@ -58,10 +58,6 @@ while (userInput !== ".exit") {
       messages,
       model: "gpt-3.5-turbo",
     });
-    if (userInput === ".getCode") {
-      messages.push({ role: "user", content: "Here is my broken code: \n"+text })
-      console.log(messages[messages.length-1].content)
-    }
     const botMessage = response.data.choices[0].message;
     if (botMessage) {
       messages.push(botMessage);
@@ -81,5 +77,4 @@ const response = await prompts({
   name: 'value',
   message: 'How would you rate your experience? 1 for worst, 10 for best.',
   validate: value => value <= 10 && value >= 1 ? true : 'Between 1 and 10'
-});
-
+})
