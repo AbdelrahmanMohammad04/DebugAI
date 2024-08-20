@@ -4,7 +4,7 @@ import { Configuration, OpenAIApi } from "openai"
 import prompts from "prompts"
 import * as fs from 'fs'
 
-const configuration = new Configuration({ apiKey: env.OPENAI_API_KEY })
+const configuration = new Configuration({ apiKey: process.env("OPENAI_API_KEY") })
 const openai = new OpenAIApi(configuration)
 const readline = createInterface({ input, output })
 
@@ -31,7 +31,7 @@ function read(file, cb) {
 }
 
 let text
-read('C:/Users/12623/vs_code_projects/CapitalOne-CLI-Project/Project/'+'PasteCodeHere.js', function(data) {
+read('./PasteCodeHere.js', function(data) {
   text = data.toString()
 })
 
@@ -56,7 +56,7 @@ while (userInput !== ".exit") {
   try {
     const response = await openai.createChatCompletion({
       messages,
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o",
     });
     const botMessage = response.data.choices[0].message;
     if (botMessage) {
